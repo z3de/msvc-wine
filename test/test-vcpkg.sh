@@ -32,7 +32,7 @@ set(ENV{PATH} "${BIN}:\$ENV{PATH}")
 EOF
 
 # Install dependencies with classic mode.
-EXEC "" vcpkg install sqlite3:$ARCH-windows --overlay-triplets=.
+EXEC "" vcpkg install sqlite3:$ARCH-windows grpc:$ARCH-windows --overlay-triplets=.
 EXEC "" file -E $VCPKG_ROOT/installed/$ARCH-windows/{,debug/}bin/sqlite3.{dll,pdb}
 
 # Create source files.
