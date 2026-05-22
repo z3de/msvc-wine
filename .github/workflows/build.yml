@@ -23,7 +23,7 @@ jobs:
           # Check https://gitlab.winehq.org/wine/wine/-/wikis/Wine-Mono#versions before updating the WINE package!
           curl -s -L -O https://github.com/madewokherd/wine-mono/releases/download/wine-mono-8.1.0/wine-mono-8.1.0-x86.msi
           $WINE msiexec /i wine-mono-8.1.0-x86.msi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           WDK_INSTALLERS=$(./wdk-download.sh --cache /var/tmp/msvc-wine "$WDK_INSTALLER_URL")
@@ -51,7 +51,7 @@ jobs:
           sudo apt-get update && sudo apt-get install python3 msitools ca-certificates cmake ninja-build winbind meson
           WINE=$(command -v wine64 || command -v wine || false)
           $WINE wineboot
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           ./vsdownload.py --accept-license --dest $(pwd)/msvc
@@ -77,7 +77,7 @@ jobs:
           sudo apt-get update && sudo apt-get install python3 msitools ca-certificates cmake ninja-build winbind meson
           WINE=$(command -v wine64 || command -v wine || false)
           $WINE wineboot
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           ./vsdownload.py --accept-license --architecture host --dest $(pwd)/msvc
@@ -98,7 +98,7 @@ jobs:
           $WINE wineboot
           curl -s -L -O https://github.com/madewokherd/wine-mono/releases/download/wine-mono-9.0.0/wine-mono-9.0.0-x86.msi
           $WINE msiexec /i wine-mono-9.0.0-x86.msi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           ./vsdownload.py --accept-license --dest $(pwd)/msvc
@@ -130,7 +130,7 @@ jobs:
           if [ ! -e /usr/bin/lld-link ]; then
               sudo ln -s /usr/bin/lld /usr/bin/lld-link
           fi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           ./vsdownload.py --accept-license --dest $(pwd)/msvc
@@ -144,7 +144,7 @@ jobs:
   test-docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Build the main msvc-wine docker image
         run: |
           docker build -t msvc-wine -f Dockerfile .
@@ -163,7 +163,7 @@ jobs:
       - name: Install prerequisites
         run: |
           choco upgrade --no-progress cmake
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           python vsdownload.py --accept-license --dest c:/msvc
@@ -174,7 +174,7 @@ jobs:
   test-vsdownload-windows-arm:
     runs-on: windows-11-arm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           python vsdownload.py --accept-license --dest c:/msvc
@@ -185,7 +185,7 @@ jobs:
   test-vsdownload-windows-arm-target-host-only:
     runs-on: windows-11-arm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           python vsdownload.py --accept-license --architecture host --dest c:/msvc
@@ -202,7 +202,7 @@ jobs:
           sudo apt-get update && sudo apt-get install wine64 wine32 python3 msitools ca-certificates winbind
           WINE=$(command -v wine64 || command -v wine || false)
           $WINE wineboot
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC 2017 latest
         run: |
           ./vsdownload.py --accept-license --dest $(pwd)/msvc --major 15

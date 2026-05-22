@@ -18,13 +18,13 @@ jobs:
           sudo apt-get update && sudo apt-get install wine64 python3 msitools ca-certificates ninja-build winbind meson nasm
           WINE=$(command -v wine64 || command -v wine || false)
           $WINE wineboot
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           ./vsdownload.py --accept-license --dest $(pwd)/msvc --architecture arm64
           ./install.sh $(pwd)/msvc
       - name: Checkout gas-preprocessor
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ffmpeg/gas-preprocessor
           ref: 9309c67acb535ca6248f092e96131d8eb07eefc1
@@ -82,13 +82,13 @@ jobs:
           sudo apt-get update && sudo apt-get install wine64 python3 msitools ca-certificates winbind nasm
           WINE=$(command -v wine64 || command -v wine || false)
           $WINE wineboot
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           ./vsdownload.py --accept-license --dest $(pwd)/msvc --architecture arm64
           ./install.sh $(pwd)/msvc
       - name: Checkout gas-preprocessor
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ffmpeg/gas-preprocessor
           ref: 9309c67acb535ca6248f092e96131d8eb07eefc1
@@ -97,7 +97,7 @@ jobs:
         run: |
           echo $(pwd)/gas-preprocessor >> $GITHUB_PATH
       - name: Checkout ffmpeg
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ffmpeg/ffmpeg
           ref: n7.1
@@ -127,13 +127,13 @@ jobs:
           sudo apt-get update && sudo apt-get install wine64 python3 msitools ca-certificates cmake ninja-build winbind
           WINE=$(command -v wine64 || command -v wine || false)
           $WINE wineboot
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download MSVC
         run: |
           ./vsdownload.py --accept-license --dest $(pwd)/msvc --architecture x64
           ./install.sh $(pwd)/msvc
       - name: Checkout llvm-project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: llvm/llvm-project
           ref: llvmorg-16.0.6
